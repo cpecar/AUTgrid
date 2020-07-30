@@ -3,8 +3,6 @@
 #include <vector>
 #include <TFile.h>
 
-
-
 double Qgrid[50] = {0.10000E+01, 0.10965E+01, 0.12023E+01, 0.13183E+01, 0.14454E+01,
                     0.15849E+01, 0.17378E+01, 0.19055E+01, 0.20893E+01, 0.22909E+01,
                     0.25119E+01, 0.27542E+01, 0.30200E+01, 0.33113E+01, 0.36308E+01,
@@ -94,7 +92,7 @@ class AUTweight{
     int zindex = -1;
     int xindex = -1;
 
-    int i =0;
+    int i = 0;
     while(Qindex == -1 && i < 50){
       if(Qval == Qgrid[i]) Qindex = i;
       else if(Qval > Qgrid[i] && Qval < Qgrid[i+1]){
@@ -103,7 +101,7 @@ class AUTweight{
       }
       i++;
     }
-    i =0;
+    i = 0;
     while(Mindex == -1 && i < 50){
       if(Mval == Mgrid[i]) Mindex = i;
       else if(Mval > Mgrid[i] && Mval< Mgrid[i+1]){
@@ -112,7 +110,7 @@ class AUTweight{
       }
       i++;
     }
-    i =0;
+    i = 0;
     while(zindex == -1 && i < 30){
       if(zval == zgrid[i]) zindex = i;
       else if(zval > zgrid[i] && zval< zgrid[i+1]){
@@ -121,7 +119,7 @@ class AUTweight{
       }
       i++;
     }
-    i =0;
+    i = 0;
     while(xindex == -1 && i < 100){
       if(xval == xgrid[i]) xindex = i;
       else if(xval > xgrid[i] && xval< xgrid[i+1]){
@@ -131,7 +129,9 @@ class AUTweight{
       i++;
     }
 
-    int AUTpos = (xindex + 100*(zindex-1)+100*30*(Mindex-1)+100*30*50*(Qindex-1));
+    int AUTpos = (xindex + 100*(zindex)+100*30*(Mindex)+100*30*50*(Qindex));
+
+    cout << AUTpos << endl;
 
     mean = weightVec[AUTpos];
     unc = uncVec[AUTpos];
